@@ -53,3 +53,17 @@ Your implementation will be evaluated on the follow criteria:
 5) The reusability of the service’s code. Can facets of the service’s code be used for other services or applications?
 
 Good luck!
+
+
+
+
+08/14/2021
+
+The project is divided into two directories
+	/VehicleAPI
+	/VehicleWebClient
+
+	VehicleAPI is a Spring Boot application that is a RESTful Web service that provides endpoints for the Vehicle entity.
+	VehicleWebClient is a React web client that is the consumer of the VechicleAPI web service.
+
+	See 08112021_ReadMe.txt for implementation details.
