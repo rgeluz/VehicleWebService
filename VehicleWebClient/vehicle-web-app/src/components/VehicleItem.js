@@ -46,7 +46,7 @@ class VehicleItem extends React.Component {
           <button onClick={() => this.handleEditing()}>
               Edit
           </button>
-          <button onClick={() => this.props.deleteVehicleProps(this.props.vehicle.id)}>
+          <button onClick={() => this.props.deleteVehicle(this.props.vehicle.id)}>
               Delete
           </button>
           {year} {make} {model}

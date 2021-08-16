@@ -1,4 +1,5 @@
 import React from "react"
+import axios from 'axios'
 import Header from "./Header"
 import VehicleList from "./VehicleList"
 import AddVehicle from "./AddVehicle"
@@ -50,9 +51,26 @@ class VehicleComponent extends React.Component {
       make: make,
       model: model
     };
-    this.setState({
-      vehicles: [...this.state.vehicles, newVehicle]
-    });
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, POST, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': 86400
+    };
+    axios.post("http://localhost:8080/api/vehicles", newVehicle, { headers })
+      .then(response => this.setState({
+        vehicles: [...this.state.vehicles, newVehicle]
+      }))
+      .catch(error=> {
+        console.error('There was an error!', error);
+        alert("There was an error adding vehicle", error)
+      });
+      
+      
+
+      /*this.setState({
+        vehicles: [...this.state.vehicles, newVehicle]
+      });*/
   };
 
   //Update the vehicle
@@ -95,8 +113,24 @@ class VehicleComponent extends React.Component {
   //Delete the vehicle
   deleteVehicle = id => {
     console.log("deleted", id);
-
-  }
+    axios.delete("http://localhost:8080/api/vehicles/"+id)
+      .then(()=>
+      this.setState({
+        vehicles: [
+          ...this.state.vehicles.filter(vehicle => {
+            return vehicle.id !== id;
+          })
+        ]
+      })
+      )
+    /*this.setState({
+      vehicles: [
+        ...this.state.vehicles.filter(vehicle => {
+          return vehicle.id !== id;
+        })
+      ]
+    });*/
+  };
 
   render() {
     return (
@@ -117,6 +151,7 @@ class VehicleComponent extends React.Component {
           updateVehicleModel={this.updateVehicleModel}
           deleteVehicle={this.deleteVehicle}
         />
+        <br></br>
         <AddVehicle addVehicle={this.addVehicle} />
       </div>
      </div>
