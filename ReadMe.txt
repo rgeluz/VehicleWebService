@@ -1,7 +1,7 @@
 08/11/2021
 
 
-Mitchell Coding Challenge:
+Coding Challenge:
 
 Implement a RESTful web service that performs CRUD operations (Create, Read, Update, and Delete) for a Vehicle entity. 
 A Vehicle is a simple object defined as follows:
